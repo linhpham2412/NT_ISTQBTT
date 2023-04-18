@@ -1,5 +1,6 @@
 package nt.istqbtt.nt_istqbtt;
 
+import lombok.SneakyThrows;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import nt.istqbtt.nt_istqbtt.datamodel.QuestionBankDataModel;
@@ -24,7 +25,7 @@ public class QuestionHandler {
     String executionPath;
     private ZipFile zipFile;
     public File imagesFolder;
-    private QuestionBankDataModel[] questionBankDataModels;
+    private QuestionBankDataModel questionBankDataModels;
     private QuestionDataModel[] questionDataModels;
     public QuestionDataModel[] testingQuestions;
     private String zipFileName;
@@ -47,7 +48,7 @@ public class QuestionHandler {
             // Unzip a password-protected ZIP file
             removePasswordToQuestionZipFile(zipFile, zipPassword);
             zipFile.extractAll(executionPath);
-            imagesFolder = new File(executionPath+"\\Images");
+            imagesFolder = new File(executionPath + "\\Images");
             imageFolderAbsolutePath = imagesFolder.getAbsolutePath();
             //Delete zip file
             zipFileToDelete.delete();
@@ -62,16 +63,19 @@ public class QuestionHandler {
 
     public void readAndSaveAllISTQBTypeInData(String zipPassword) {
         this.zipPassword = zipPassword;
-        String dataTextFileName = executionPath +"\\"+ zipFileName + ".txt";
+        String dataTextFileName = executionPath + "\\" + zipFileName + ".txt";
         if (isFirstLoad) {
             try (FileReader fr = new FileReader(dataTextFileName, StandardCharsets.UTF_8);
                  BufferedReader reader = new BufferedReader(fr)) {
                 readData = reader.readLine();
                 do {
-                    String[] readList = Arrays.stream(readData.split("\\|"))
-                            .map(e -> e.trim()).collect(Collectors.toList()).toArray(new String[0]);
-                    if (!readList[1].equals("Group")) {
-                        listOfISTQBTypeReadFromData.add(readList[1]);
+                    try {
+                        String[] readList = Arrays.stream(readData.split("\\|"))
+                                .map(e -> e.trim()).collect(Collectors.toList()).toArray(new String[0]);
+                        if (!readList[1].equals("Group")) {
+                            listOfISTQBTypeReadFromData.add(readList[1]);
+                        }
+                    } catch (Exception e) {
                     }
                 }
                 while ((readData = reader.readLine()) != null);
@@ -91,8 +95,8 @@ public class QuestionHandler {
     private File switchDataZipFileName(String zipFileName) throws IOException, ZipException {
         File zipFileToDelete;
         executionPath = System.getProperty("user.dir");
-        Path sourceFile = Paths.get(executionPath+"//QuestionData//" + zipFileName + ".zip");
-        Path cloneFile = Paths.get(executionPath + zipFileName +"_Process.zip");
+        Path sourceFile = Paths.get(executionPath + "//QuestionData//" + zipFileName + ".zip");
+        Path cloneFile = Paths.get(executionPath + zipFileName + "_Process.zip");
         Files.copy(sourceFile, cloneFile, StandardCopyOption.REPLACE_EXISTING);
         zipFileToDelete = new File(cloneFile.toUri());
         return zipFileToDelete;
@@ -104,39 +108,34 @@ public class QuestionHandler {
 
     public void mapDataInQuestionFileToDataModelByGroupName() throws IOException {
         if (isFirstLoad) {
-            int questionIndex = 0;
-            int bankIndex = 0;
-            boolean isLastQuestion = false;
-            String dataTextFileName = executionPath +"\\"+ zipFileName + ".txt";
-            questionBankDataModels = new QuestionBankDataModel[0];
-            questionDataModels = new QuestionDataModel[numberOfQuestionsPerQuestionBank];
+            String dataTextFileName = executionPath + "\\" + zipFileName + ".txt";
+            questionDataModels = new QuestionDataModel[1];
             try (FileReader fr = new FileReader(dataTextFileName, StandardCharsets.UTF_8);
                  BufferedReader reader = new BufferedReader(fr)) {
                 readData = reader.readLine();
                 do {
-                    String[] readList = Arrays.stream(readData.split("\\|"))
-                            .map(e -> e.trim()).collect(Collectors.toList()).toArray(new String[0]);
-                    if (readList[1].equals(questionGroupName)) {
-                        bankIndex = Integer.parseInt(readList[2]);
-                        questionDataModels = verifyBankIndexToSaveQuestionsToTheBank(bankIndex, questionDataModels, isLastQuestion);
-                        questionDataModels[questionIndex] = readAndAddQuestionsToQuestionBank(readList);
-                        if (questionIndex == 39) {
-                            questionIndex = 0;
-                        } else {
-                            questionIndex += 1;
+                    try {
+                        String[] readList = Arrays.stream(readData.split("\\|"))
+                                .map(e -> e.trim()).collect(Collectors.toList()).toArray(new String[0]);
+                        if (readList[1].equals(questionGroupName)) {
+                            questionDataModels[numberOfQuestionBanksInGroup] = readAndAddQuestionsToQuestionBank(readList);
+                            numberOfQuestionBanksInGroup++;
+                            questionDataModels = Arrays.copyOf(questionDataModels, numberOfQuestionBanksInGroup * 1 + 1);
                         }
+                    } catch (Exception e) {
                     }
                 }
                 while ((readData = reader.readLine()) != null);
-                isLastQuestion = true;
-                questionDataModels = verifyBankIndexToSaveQuestionsToTheBank(bankIndex, questionDataModels, isLastQuestion);
+                numberOfQuestionBanksInGroup=0;
+                questionDataModels = Arrays.copyOf(questionDataModels, questionDataModels.length-1);
+                questionBankDataModels = new QuestionBankDataModel();
+                questionBankDataModels.setQuestionDataModels(questionDataModels);
                 //Remove txt file after read
                 reader.close();
                 fr.close();
                 //Remove txt file after rezip
                 File questionTextFile = new File(dataTextFileName);
                 questionTextFile.delete();
-                numberOfQuestionBanksInGroup = bankIndex;
                 isFirstLoad = false;
             } catch (Exception e) {
                 throw new RuntimeException(e);
@@ -302,36 +301,37 @@ public class QuestionHandler {
         return dataToConvert.equals("Y");
     }
 
-    private QuestionDataModel[] verifyBankIndexToSaveQuestionsToTheBank(int currentBankIndex, QuestionDataModel[] questionDataModels, boolean isLastQuestion) throws Exception {
-        if (currentBankIndex != 0 && currentBankIndex != checkingBankIndex && checkingBankIndex != 0) {
-            questionDataModels = saveQuestionToTheBankAndCleanIt(currentBankIndex);
-        } else if (checkingBankIndex == 0) {
-            checkingBankIndex = 1;
-        } else if (isLastQuestion) {
-            questionDataModels = saveQuestionToTheBankAndCleanIt(currentBankIndex);
-        }
-        return questionDataModels;
-    }
+//    private QuestionDataModel[] verifyBankIndexToSaveQuestionsToTheBank(int currentBankIndex, QuestionDataModel[] questionDataModels, boolean isLastQuestion) throws Exception {
+//        if (currentBankIndex != 0 && currentBankIndex != checkingBankIndex && checkingBankIndex != 0) {
+//            questionDataModels = saveQuestionToTheBankAndCleanIt(currentBankIndex);
+//        } else if (checkingBankIndex == 0) {
+//            checkingBankIndex = 1;
+//        } else if (isLastQuestion) {
+//            questionDataModels = saveQuestionToTheBankAndCleanIt(currentBankIndex);
+//        }
+//        return questionDataModels;
+//    }
 
-    private QuestionDataModel[] saveQuestionToTheBankAndCleanIt(int currentBankIndex) {
-        int saveBankDataModelIndex = checkingBankIndex - 1;
-        questionBankDataModels = Arrays.copyOf(questionBankDataModels, questionBankDataModels.length + 1);
-        try {
-            questionBankDataModels[saveBankDataModelIndex] = new QuestionBankDataModel();
-            questionBankDataModels[saveBankDataModelIndex].setQuestionDataModels(questionDataModels);
-            questionDataModels = new QuestionDataModel[numberOfQuestionsPerQuestionBank];
-            checkingBankIndex = currentBankIndex;
-        } catch (Exception e) {
-        }
-        return questionDataModels;
-    }
+//    private QuestionDataModel[] saveQuestionToTheBankAndCleanIt(int currentBankIndex) {
+//        int saveBankDataModelIndex = checkingBankIndex - 1;
+////        questionBankDataModels = Arrays.copyOf(questionBankDataModels, questionBankDataModels.length + 1);
+//        try {
+////            questionBankDataModels[0] = new QuestionBankDataModel();
+////            questionBankDataModels[0].setQuestionDataModels(questionDataModels);
+//            questionDataModels = new QuestionDataModel[numberOfQuestionsPerQuestionBank];
+//            checkingBankIndex = currentBankIndex;
+//        } catch (Exception e) {
+//        }
+//        return questionDataModels;
+//    }
 
-    public void randomChooseAQuestionBankThenShuffleQuestionsInList(int[][] correctAnswer) {
+    public void randomChooseQuestionsInBankThenShuffleAndSaveToTestingQuestions(int[][] correctAnswer) {
         List<QuestionDataModel> shuffleTestingQuestions =
-                new LinkedList<QuestionDataModel>
-                        (Arrays.asList(this.questionBankDataModels[randomSelectBankIndex()].questionDataModels));
+                new LinkedList<>
+                        (Arrays.asList(questionBankDataModels.getQuestionDataModels()));
         Collections.shuffle(shuffleTestingQuestions, new Random());
-        this.testingQuestions = shuffleTestingQuestions.toArray(new QuestionDataModel[0]);
+        this.testingQuestions = new QuestionDataModel[1];
+        this.testingQuestions = shuffleTestingQuestions.subList(0, 40).toArray(new QuestionDataModel[0]);
         for (int i = 0; i < correctAnswer.length; i++) {
             correctAnswer[i][0] = convertBooleanToOneOrZero(testingQuestions[i].isQuestionAnswer1Correct);
             correctAnswer[i][1] = convertBooleanToOneOrZero(testingQuestions[i].isQuestionAnswer2Correct);
@@ -350,12 +350,12 @@ public class QuestionHandler {
         return (booleanToConvert) ? 1 : 0;
     }
 
-    private int randomSelectBankIndex() {
-        Random randomSelectQuestionBank = new Random();
-        do {
-            testingBankIndex = randomSelectQuestionBank.nextInt(checkingBankIndex);
-        } while (previousTestingBankIndex == testingBankIndex);
-        previousTestingBankIndex = testingBankIndex;
-        return testingBankIndex;
-    }
+//    private int randomSelectBankIndex() {
+//        Random randomSelectQuestionBank = new Random();
+//        do {
+//            testingBankIndex = randomSelectQuestionBank.nextInt(checkingBankIndex);
+//        } while (previousTestingBankIndex == testingBankIndex);
+//        previousTestingBankIndex = testingBankIndex;
+//        return testingBankIndex;
+//    }
 }

@@ -9,29 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d0c8f9d-1842-4fa7-bc85-e1304a67af1b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/NT_ISTQBTT_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/ISTQBTT_Page_Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/NT_ISTQBTT_Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/NT_ISTQB_Runner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/QuestionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/datamodel/QuestionBankDataModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/datamodel/QuestionDataModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/nt/istqbtt/nt_istqbtt/QuestionData/ISTQB_QuestionsBank.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/nt/istqbtt/nt_istqbtt/istqbtt_page.fxml" afterDir="false" />
+    <list default="true" id="7d0c8f9d-1842-4fa7-bc85-e1304a67af1b" name="Changes" comment="complete reimplement and build executable file">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/ISTQBTT_Page_Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/ISTQBTT_Page_Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/QuestionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/QuestionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/nt/istqbtt/nt_istqbtt/QuestionData/ISTQB_QuestionsBank.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/nt/istqbtt/nt_istqbtt/QuestionData/ISTQB_QuestionsBank.zip" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +29,19 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="80821b3e-0080-4122-b922-9595f61253c8" />
+        <option name="url" value="https://github.com/linhpham2412/NT_ISTQBTT.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -103,6 +98,14 @@
       <option name="presentableId" value="Default" />
       <updated>1681797167097</updated>
     </task>
+    <task id="LOCAL-00001" summary="complete reimplement and build executable file">
+      <created>1681801606295</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1681801606295</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -115,5 +118,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="complete reimplement and build executable file" />
+    <option name="LAST_COMMIT_MESSAGE" value="complete reimplement and build executable file" />
   </component>
 </project>
