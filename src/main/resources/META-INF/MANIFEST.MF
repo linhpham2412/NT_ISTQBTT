@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: nt.istqbtt.nt_istqbtt.NT_ISTQB_Runner
+
