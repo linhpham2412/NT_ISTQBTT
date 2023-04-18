@@ -18,7 +18,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import nt.istqbtt.nt_istqbtt.datamodel.QuestionDataModel;
-import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,7 +25,6 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
-import java.util.zip.ZipException;
 
 import static org.apache.commons.io.FileUtils.cleanDirectory;
 
@@ -154,12 +152,29 @@ public class ISTQBTT_Page_Controller implements Initializable {
                 Stage examinationStage = new Stage();
                 questionHandler.isFirstLoad = true;
                 try {
-                    changeStageAndScene(examinationStage, setupLayoutPageExam(toolFont), "Examination Page");
+                    changeStageAndScene(examinationStage, setupLayoutPageExam(toolFont), "Examination Page of: "+selectTestingTypeComboBox.getValue());
                 } catch (IOException | net.lingala.zip4j.exception.ZipException zipException) {
                     throw new RuntimeException(zipException);
                 }
             }
         });
+        Button quitAppHomeButton = new Button("Quit");
+        quitAppHomeButton.setFont(toolFont);
+        quitAppHomeButton.setOnAction(event -> {
+            try {
+                cleanDirectory(questionHandler.imagesFolder);
+                questionHandler.imagesFolder.delete();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            ((Stage) (quitAppHomeButton.getScene().getWindow())).close();
+        });
+        HBox commandContainer = new HBox();
+        commandContainer.setAlignment(Pos.CENTER);
+        commandContainer.getChildren().add(btn_StartTest);
+        commandContainer.getChildren().add(quitAppHomeButton);
+        HBox.setMargin(btn_StartTest,new Insets(10,10,10,10));
+        HBox.setMargin(quitAppHomeButton, new Insets(10,10,10,10));
 
         //Set up Result VBox
         VBox resultVBox = new VBox();
@@ -169,7 +184,7 @@ public class ISTQBTT_Page_Controller implements Initializable {
         resultVBox.getChildren().add(welcomeContainer);
         resultVBox.getChildren().add(creatorTitle);
         resultVBox.getChildren().add(selectTestingTypeHBox);
-        resultVBox.getChildren().add(btn_StartTest);
+        resultVBox.getChildren().add(commandContainer);
         resultVBox.getChildren().add(blankPaneFooter);
 
         return resultVBox;
@@ -179,7 +194,7 @@ public class ISTQBTT_Page_Controller implements Initializable {
         //Read and assign all questions data to questionHandler
         questionHandler.readQuestionZipFile(questionFileName, zipFilePassword);
         questionHandler.mapDataInQuestionFileToDataModelByGroupName();
-        questionHandler.randomChooseAQuestionBankThenShuffleQuestionsInList(correctAnswer);
+        questionHandler.randomChooseQuestionsInBankThenShuffleAndSaveToTestingQuestions(correctAnswer);
 
         //Set up Timer header
         Label timerValue = new Label();
@@ -253,6 +268,7 @@ public class ISTQBTT_Page_Controller implements Initializable {
             ((Stage) (returnToHomeButton.getScene().getWindow())).close();
             Stage homeStage = new Stage();
             selectedAnswer = new int[40][10];
+            questionHandler.isFirstLoad = true;
             try {
                 changeStageAndScene(homeStage, setupHomePage(toolFont), "Home Page");
             } catch (IOException | net.lingala.zip4j.exception.ZipException e) {
@@ -265,7 +281,7 @@ public class ISTQBTT_Page_Controller implements Initializable {
             Stage examinationStage = new Stage();
             try {
                 selectedAnswer = new int[40][10];
-                changeStageAndScene(examinationStage, setupLayoutPageExam(toolFont), "Examination Page");
+                changeStageAndScene(examinationStage, setupLayoutPageExam(toolFont), "Examination Page of: "+selectTestingTypeComboBox.getValue());
             } catch (IOException | net.lingala.zip4j.exception.ZipException e) {
                 throw new RuntimeException(e);
             }
