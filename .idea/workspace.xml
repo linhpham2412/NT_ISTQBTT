@@ -9,11 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d0c8f9d-1842-4fa7-bc85-e1304a67af1b" name="Changes" comment="complete reimplement and build executable file">
+    <list default="true" id="7d0c8f9d-1842-4fa7-bc85-e1304a67af1b" name="Changes" comment="done_fix_executable_structure_and_fix_null_for_the_last_question">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuestionData/ISTQB_QuestionsBank.zip" beforeDir="false" afterPath="$PROJECT_DIR$/QuestionData/ISTQB_QuestionsBank.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/NT_ISTQBTT_jar.zip" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/NT_ISTQBTT_jar.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/NT_ISTQBTT_jar/NT_ISTQBTT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/NT_ISTQBTT_jar/NT_ISTQBTT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/ISTQBTT_Page_Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/ISTQBTT_Page_Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/QuestionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/QuestionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/nt/istqbtt/nt_istqbtt/QuestionData/ISTQB_QuestionsBank.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/nt/istqbtt/nt_istqbtt/QuestionData/ISTQB_QuestionsBank.zip" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,13 +33,18 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="done_fix_executable_structure_and_fix_null_for_the_last_question" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -64,9 +74,10 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/linhpham/IdeaProjects/Internal_Testing_Tool",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.43218392"
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.43218392",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -122,5 +133,20 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="complete reimplement and build executable file" />
     <option name="LAST_COMMIT_MESSAGE" value="complete reimplement and build executable file" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/ISTQBTT_Page_Controller.java</url>
+          <line>372</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
