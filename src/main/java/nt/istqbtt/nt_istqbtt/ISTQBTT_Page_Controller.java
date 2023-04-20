@@ -62,13 +62,14 @@ public class ISTQBTT_Page_Controller implements Initializable {
     int[][] correctAnswer = new int[40][10];
 
     //Question Field items
-    Label[] questionTitle = new Label[10];
-    javafx.scene.image.ImageView[] questionImage = new javafx.scene.image.ImageView[10];
-    Object[] questionObjects = new Object[10];
-    CheckBox[] answerCheckBoxes = new CheckBox[10];
-    RadioButton[] answerRadioButtons = new RadioButton[10];
+    Label[] questionTitle;
+    javafx.scene.image.ImageView[] questionImage;
+    GridPane[] questionGridTable;
+    Object[] questionObjects;
+    CheckBox[] answerCheckBoxes;
+    RadioButton[] answerRadioButtons;
     ToggleGroup[] answerRadioGroup = new ToggleGroup[40];
-    HBox[] answerHBoxContainers = new HBox[5];
+    HBox[] answerHBoxContainers;
     Button nextPageButton = new Button("Next");
     Button previousPageButton = new Button("Previous");
     Button endTestButton = new Button("End Test");
@@ -152,7 +153,7 @@ public class ISTQBTT_Page_Controller implements Initializable {
                 Stage examinationStage = new Stage();
                 questionHandler.isFirstLoad = true;
                 try {
-                    changeStageAndScene(examinationStage, setupLayoutPageExam(toolFont), "Examination Page of: "+selectTestingTypeComboBox.getValue());
+                    changeStageAndScene(examinationStage, setupLayoutPageExam(toolFont), "Examination Page of: " + selectTestingTypeComboBox.getValue());
                 } catch (IOException | net.lingala.zip4j.exception.ZipException zipException) {
                     throw new RuntimeException(zipException);
                 }
@@ -173,8 +174,8 @@ public class ISTQBTT_Page_Controller implements Initializable {
         commandContainer.setAlignment(Pos.CENTER);
         commandContainer.getChildren().add(btn_StartTest);
         commandContainer.getChildren().add(quitAppHomeButton);
-        HBox.setMargin(btn_StartTest,new Insets(10,10,10,10));
-        HBox.setMargin(quitAppHomeButton, new Insets(10,10,10,10));
+        HBox.setMargin(btn_StartTest, new Insets(10, 10, 10, 10));
+        HBox.setMargin(quitAppHomeButton, new Insets(10, 10, 10, 10));
 
         //Set up Result VBox
         VBox resultVBox = new VBox();
@@ -281,7 +282,7 @@ public class ISTQBTT_Page_Controller implements Initializable {
             Stage examinationStage = new Stage();
             try {
                 selectedAnswer = new int[40][10];
-                changeStageAndScene(examinationStage, setupLayoutPageExam(toolFont), "Examination Page of: "+selectTestingTypeComboBox.getValue());
+                changeStageAndScene(examinationStage, setupLayoutPageExam(toolFont), "Examination Page of: " + selectTestingTypeComboBox.getValue());
             } catch (IOException | net.lingala.zip4j.exception.ZipException e) {
                 throw new RuntimeException(e);
             }
@@ -359,6 +360,7 @@ public class ISTQBTT_Page_Controller implements Initializable {
         //setup and clean up data
         questionTitle = new Label[10];
         questionImage = new javafx.scene.image.ImageView[10];
+        questionGridTable = new GridPane[10];
         questionObjects = new Object[10];
         answerCheckBoxes = new CheckBox[10];
         answerRadioButtons = new RadioButton[10];
@@ -470,12 +472,36 @@ public class ISTQBTT_Page_Controller implements Initializable {
                 questionImage[i] = new ImageView();
                 questionImage[i].setImage(new Image(questionStringTitle[i]));
                 questionObjects[i] = questionImage[i];
+            } else if (questionStringTitle[i].contains("[TableHeader]")) {
+                String[] tableRowData = questionStringTitle[i].split("(\\[TableRow\\])");
+                questionGridTable[i] = new GridPane();
+                questionGridTable[i].setGridLinesVisible(true);
+                renderQuestionGridTable(questionGridTable[i], tableRowData);
+                questionObjects[i] = questionGridTable[i];
             } else {
                 questionTitle[i] = new Label(questionStringTitle[i]);
                 questionTitle[i].setPrefWidth(labelWidthInScrollPane);
                 questionTitle[i].setWrapText(true);
                 questionObjects[i] = questionTitle[i];
             }
+        }
+    }
+
+    private void renderQuestionGridTable(GridPane gridPane, String[] tableRowData) {
+        String[] rowDataStringList;
+        for (int rowIndex = 0; rowIndex < tableRowData.length; rowIndex++) {
+            tableRowData[rowIndex] = tableRowData[rowIndex].replace("[TableHeader]", "");
+            rowDataStringList = tableRowData[rowIndex].split("#");
+            renderQuestionGridRow(gridPane,rowDataStringList,rowIndex);
+        }
+    }
+
+    private void renderQuestionGridRow(GridPane gridPane, String[] rowDataStringList, int rowIndex) {
+        Label[] colLabels = new Label[rowDataStringList.length];
+        for (int colIndex=0;colIndex<rowDataStringList.length;colIndex++){
+            colLabels[colIndex] = new Label(rowDataStringList[colIndex]);
+            gridPane.add(colLabels[colIndex],colIndex,rowIndex);
+            GridPane.setMargin(colLabels[colIndex],new Insets(5,5,5,5));
         }
     }
 

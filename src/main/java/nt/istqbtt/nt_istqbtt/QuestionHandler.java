@@ -65,7 +65,7 @@ public class QuestionHandler {
         this.zipPassword = zipPassword;
         String dataTextFileName = executionPath + "\\" + zipFileName + ".txt";
         if (isFirstLoad) {
-            try (FileReader fr = new FileReader(dataTextFileName, StandardCharsets.UTF_8);
+            try (FileReader fr = new FileReader(dataTextFileName);
                  BufferedReader reader = new BufferedReader(fr)) {
                 readData = reader.readLine();
                 do {
@@ -110,7 +110,7 @@ public class QuestionHandler {
         if (isFirstLoad) {
             String dataTextFileName = executionPath + "\\" + zipFileName + ".txt";
             questionDataModels = new QuestionDataModel[1];
-            try (FileReader fr = new FileReader(dataTextFileName, StandardCharsets.UTF_8);
+            try (FileReader fr = new FileReader(dataTextFileName);
                  BufferedReader reader = new BufferedReader(fr)) {
                 readData = reader.readLine();
                 do {
@@ -146,7 +146,7 @@ public class QuestionHandler {
     private QuestionDataModel readAndAddQuestionsToQuestionBank(String[] readList) {
         QuestionDataModel questionDataModel = new QuestionDataModel();
         int colIndex = 1;
-        for (int i = 3; i < readList.length; i++) {
+        for (int i = 2; i < readList.length; i++) {
             mapColumnDataToQuestionDataModelBasedOnColumnIndex(questionDataModel, readList[i], colIndex);
             colIndex++;
         }
@@ -158,127 +158,127 @@ public class QuestionHandler {
         //Check if there is any \n in columnData then replace with System lineseparator
         columnData = checkNewLineSymbolInDataToReplaceWithLineSeparator(columnData);
         switch (colIndex) {
-            case 1 -> {
+            case 1 : {
                 questionDataModel.setQuestionTitle1(columnData);
                 break;
             }
-            case 2 -> {
+            case 2 : {
                 questionDataModel.setQuestionTitle2(columnData);
                 break;
             }
-            case 3 -> {
+            case 3 : {
                 questionDataModel.setQuestionTitle3(columnData);
                 break;
             }
-            case 4 -> {
+            case 4 : {
                 questionDataModel.setQuestionTitle4(columnData);
                 break;
             }
-            case 5 -> {
+            case 5 : {
                 questionDataModel.setQuestionTitle5(columnData);
                 break;
             }
-            case 6 -> {
+            case 6 : {
                 questionDataModel.setQuestionTitle6(columnData);
                 break;
             }
-            case 7 -> {
+            case 7 : {
                 questionDataModel.setQuestionTitle7(columnData);
                 break;
             }
-            case 8 -> {
+            case 8 : {
                 questionDataModel.setQuestionTitle8(columnData);
                 break;
             }
-            case 9 -> {
+            case 9 : {
                 questionDataModel.setQuestionTitle9(columnData);
                 break;
             }
-            case 10 -> {
+            case 10 : {
                 questionDataModel.setQuestionTitle10(columnData);
                 break;
             }
-            case 11 -> {
+            case 11 : {
                 questionDataModel.setMultipleChoice(convertDataToBoolean(columnData));
                 break;
             }
-            case 12 -> {
+            case 12 : {
                 questionDataModel.setQuestionAnswer1(columnData);
                 break;
             }
-            case 13 -> {
+            case 13 : {
                 questionDataModel.setQuestionAnswer1Correct(convertDataToBoolean(columnData));
                 break;
             }
-            case 14 -> {
+            case 14 : {
                 questionDataModel.setQuestionAnswer2(columnData);
                 break;
             }
-            case 15 -> {
+            case 15 : {
                 questionDataModel.setQuestionAnswer2Correct(convertDataToBoolean(columnData));
                 break;
             }
-            case 16 -> {
+            case 16 : {
                 questionDataModel.setQuestionAnswer3(columnData);
                 break;
             }
-            case 17 -> {
+            case 17 : {
                 questionDataModel.setQuestionAnswer3Correct(convertDataToBoolean(columnData));
                 break;
             }
-            case 18 -> {
+            case 18 : {
                 questionDataModel.setQuestionAnswer4(columnData);
                 break;
             }
-            case 19 -> {
+            case 19 : {
                 questionDataModel.setQuestionAnswer4Correct(convertDataToBoolean(columnData));
                 break;
             }
-            case 20 -> {
+            case 20 : {
                 questionDataModel.setQuestionAnswer5(columnData);
                 break;
             }
-            case 21 -> {
+            case 21 : {
                 questionDataModel.setQuestionAnswer5Correct(convertDataToBoolean(columnData));
                 break;
             }
-            case 22 -> {
+            case 22 : {
                 questionDataModel.setQuestionAnswer6(columnData);
                 break;
             }
-            case 23 -> {
+            case 23 : {
                 questionDataModel.setQuestionAnswer6Correct(convertDataToBoolean(columnData));
                 break;
             }
-            case 24 -> {
+            case 24 : {
                 questionDataModel.setQuestionAnswer7(columnData);
                 break;
             }
-            case 25 -> {
+            case 25 : {
                 questionDataModel.setQuestionAnswer7Correct(convertDataToBoolean(columnData));
                 break;
             }
-            case 26 -> {
+            case 26 : {
                 questionDataModel.setQuestionAnswer8(columnData);
                 break;
             }
-            case 27 -> {
+            case 27 : {
                 questionDataModel.setQuestionAnswer8Correct(convertDataToBoolean(columnData));
                 break;
             }
-            case 28 -> {
+            case 28 : {
                 questionDataModel.setQuestionAnswer9(columnData);
                 break;
             }
-            case 29 -> {
+            case 29 : {
                 questionDataModel.setQuestionAnswer9Correct(convertDataToBoolean(columnData));
                 break;
             }
-            case 30 -> {
+            case 30 : {
                 questionDataModel.setQuestionAnswer10(columnData);
                 break;
             }
-            case 31 -> {
+            case 31 : {
                 questionDataModel.setQuestionAnswer10Correct(convertDataToBoolean(columnData));
                 break;
             }
@@ -300,30 +300,6 @@ public class QuestionHandler {
     private boolean convertDataToBoolean(String dataToConvert) {
         return dataToConvert.equals("Y");
     }
-
-//    private QuestionDataModel[] verifyBankIndexToSaveQuestionsToTheBank(int currentBankIndex, QuestionDataModel[] questionDataModels, boolean isLastQuestion) throws Exception {
-//        if (currentBankIndex != 0 && currentBankIndex != checkingBankIndex && checkingBankIndex != 0) {
-//            questionDataModels = saveQuestionToTheBankAndCleanIt(currentBankIndex);
-//        } else if (checkingBankIndex == 0) {
-//            checkingBankIndex = 1;
-//        } else if (isLastQuestion) {
-//            questionDataModels = saveQuestionToTheBankAndCleanIt(currentBankIndex);
-//        }
-//        return questionDataModels;
-//    }
-
-//    private QuestionDataModel[] saveQuestionToTheBankAndCleanIt(int currentBankIndex) {
-//        int saveBankDataModelIndex = checkingBankIndex - 1;
-////        questionBankDataModels = Arrays.copyOf(questionBankDataModels, questionBankDataModels.length + 1);
-//        try {
-////            questionBankDataModels[0] = new QuestionBankDataModel();
-////            questionBankDataModels[0].setQuestionDataModels(questionDataModels);
-//            questionDataModels = new QuestionDataModel[numberOfQuestionsPerQuestionBank];
-//            checkingBankIndex = currentBankIndex;
-//        } catch (Exception e) {
-//        }
-//        return questionDataModels;
-//    }
 
     public void randomChooseQuestionsInBankThenShuffleAndSaveToTestingQuestions(int[][] correctAnswer) {
         List<QuestionDataModel> shuffleTestingQuestions =
@@ -349,13 +325,4 @@ public class QuestionHandler {
     private int convertBooleanToOneOrZero(boolean booleanToConvert) {
         return (booleanToConvert) ? 1 : 0;
     }
-
-//    private int randomSelectBankIndex() {
-//        Random randomSelectQuestionBank = new Random();
-//        do {
-//            testingBankIndex = randomSelectQuestionBank.nextInt(checkingBankIndex);
-//        } while (previousTestingBankIndex == testingBankIndex);
-//        previousTestingBankIndex = testingBankIndex;
-//        return testingBankIndex;
-//    }
 }
