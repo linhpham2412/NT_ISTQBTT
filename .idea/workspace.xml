@@ -10,15 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d0c8f9d-1842-4fa7-bc85-e1304a67af1b" name="Changes" comment="done_fix_executable_structure_and_fix_null_for_the_last_question">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/QuestionData/ISTQB_QuestionsBank.zip" beforeDir="false" afterPath="$PROJECT_DIR$/QuestionData/ISTQB_QuestionsBank.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/NT_ISTQBTT_jar.zip" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/NT_ISTQBTT_jar.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/NT_ISTQBTT_jar/NT_ISTQBTT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/NT_ISTQBTT_jar/NT_ISTQBTT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/NT_ISTQBTT_jar/QuestionData/ISTQB_QuestionsBank.zip" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/NT_ISTQBTT_jar/QuestionData/ISTQB_QuestionsBank.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/ISTQBTT_Page_Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/ISTQBTT_Page_Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/QuestionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/QuestionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/nt/istqbtt/nt_istqbtt/QuestionData/ISTQB_QuestionsBank.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/nt/istqbtt/nt_istqbtt/QuestionData/ISTQB_QuestionsBank.zip" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +44,12 @@
   }
 }</component>
   <component name="GithubPullRequestsUISettings">
+    <option name="recentNewPullRequestHead">
+      <RepoCoordinatesHolder>
+        <option name="owner" value="linhpham2412" />
+        <option name="repository" value="NT_ISTQBTT" />
+      </RepoCoordinatesHolder>
+    </option>
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
         <option name="accountId" value="80821b3e-0080-4122-b922-9595f61253c8" />
@@ -67,19 +71,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/linhpham/IdeaProjects/Internal_Testing_Tool",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.43218392",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/linhpham/IdeaProjects/Internal_Testing_Tool&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.43218392&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="nt.istqbtt.nt_istqbtt.datamodel" />
@@ -116,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681801606295</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="create new function to convert text to simple grid table">
+      <created>1681982254943</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681982254943</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -132,18 +143,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="complete reimplement and build executable file" />
-    <option name="LAST_COMMIT_MESSAGE" value="complete reimplement and build executable file" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/ISTQBTT_Page_Controller.java</url>
-          <line>372</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="create new function to convert text to simple grid table" />
+    <option name="LAST_COMMIT_MESSAGE" value="create new function to convert text to simple grid table" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
