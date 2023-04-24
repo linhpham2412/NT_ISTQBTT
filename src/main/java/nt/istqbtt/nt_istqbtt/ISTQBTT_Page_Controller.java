@@ -3,6 +3,7 @@ package nt.istqbtt.nt_istqbtt;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
@@ -90,14 +91,12 @@ public class ISTQBTT_Page_Controller implements Initializable {
         examPagePane.getChildren().add(examPageVBox);
     }
 
-    private void changeStageAndScene(Stage stageToLoad, VBox layoutVBoxContainer, String sceneTitle) {
-        this.mainStage = stageToLoad;
+    private void changeStageAndScene(ActionEvent event, VBox layoutVBoxContainer, String sceneTitle) {
+        this.mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Pane layout = new Pane(layoutVBoxContainer);
         Scene scene = new Scene(layout, screenWidth, screenHeight);
-        mainStage.setResizable(false);
         mainStage.setTitle(sceneTitle);
         mainStage.setScene(scene);
-        mainStage.show();
     }
 
     private VBox setupHomePage(Font toolFont) throws IOException, net.lingala.zip4j.exception.ZipException {
@@ -106,13 +105,38 @@ public class ISTQBTT_Page_Controller implements Initializable {
         questionHandler.readAndSaveAllISTQBTypeInData(zipFilePassword);
         //Set up layout
         Pane blankPaneHeader = new Pane();
-        blankPaneHeader.setPrefHeight(screenHeight / 8);
+        double headerHeight = screenHeight/8;
+        blankPaneHeader.setPrefHeight(headerHeight);
         blankPaneHeader.setBackground(new Background(new BackgroundFill(Paint.valueOf("#CACACA"), CornerRadii.EMPTY, Insets.EMPTY)));
+        ImageView nashTechLogo = new ImageView();
+        nashTechLogo.setFitWidth(headerHeight);
+        nashTechLogo.setFitHeight(headerHeight);
+        HBox logoBox = new HBox();
+        HBox infoBox = new HBox();
+        Button informationButton = new Button("Credit");
+        ImageView infoImage = new ImageView(new Image("nt/istqbtt/nt_istqbtt/infomationIcon.png"));
+        infoImage.setFitHeight(headerHeight/2);
+        infoImage.setFitWidth(headerHeight/2);
+        informationButton.setGraphic(infoImage);
+        logoBox.setPrefSize(screenWidth/2,headerHeight);
+        infoBox.setPrefSize(screenWidth/2,headerHeight);
+        logoBox.setAlignment(Pos.TOP_LEFT);
+        infoBox.setAlignment(Pos.CENTER_RIGHT);
+        logoBox.getChildren().add(nashTechLogo);
+        infoBox.getChildren().add(informationButton);
+        infoBox.setTranslateX(screenWidth/2);
+        HBox.setMargin(informationButton,new Insets(20,20,20,20));
+        blankPaneHeader.getChildren().add(logoBox);
+        blankPaneHeader.getChildren().add(infoBox);
+        nashTechLogo.setImage(new Image("nt/istqbtt/nt_istqbtt/NashTechLogo.png"));
         Pane blankPaneFooter = new Pane();
         blankPaneFooter.setPrefHeight(screenHeight / 8);
         blankPaneFooter.setBackground(new Background(new BackgroundFill(Paint.valueOf("#CACACA"), CornerRadii.EMPTY, Insets.EMPTY)));
-        Label welcomeTitle = new Label("Welcome to ISTQB NT Testing Tool");
-        welcomeTitle.setStyle("-fx-font-size: 48; -fx-font-weight: bold;");
+        Label welcomeTitle = new Label("Welcome To Internal ISTQB Knowledge Testing Tool");
+        welcomeTitle.setPrefWidth(screenWidth/3);
+        welcomeTitle.setWrapText(true);
+        welcomeTitle.setAlignment(Pos.CENTER);
+        welcomeTitle.setStyle("-fx-font-size: 48; -fx-font-weight: bold;-fx-text-alignment: center;");
         HBox welcomeContainer = new HBox();
         HBox welcomeBorder = new HBox();
         Pane blankLeftPane = new Pane();
@@ -133,27 +157,54 @@ public class ISTQBTT_Page_Controller implements Initializable {
         HBox selectTestingTypeHBox = new HBox();
         Label selectYourTestingTypeLabel = new Label("Select ISTQB:");
         selectYourTestingTypeLabel.setFont(toolFont);
+
+        //Set up ISTQB Type information pane
+        HBox istqbInformationHBox = new HBox();
+        istqbInformationHBox.setPrefSize(screenWidth,screenHeight/3.5);
+        VBox infoVbox = new VBox();
+        infoVbox.setPrefWidth(screenWidth/2);
+        infoVbox.setStyle("-fx-font-size: 16; -fx-border-width: 5px; -fx-border-style: solid;-fx-border-color: #3282F6;");
+        HBox.setMargin(infoVbox,new Insets(20,20,20,20));
+        istqbInformationHBox.setAlignment(Pos.CENTER);
+        Label istqbDetailText = new Label("Detail of ISTQB here");
+        istqbDetailText.setFont(toolFont);
+        istqbDetailText.setStyle("-fx-text-alignment: center;");
+        istqbDetailText.setPrefWidth(screenWidth/2);
+        istqbDetailText.setWrapText(true);
+
+
+        infoVbox.setAlignment(Pos.TOP_LEFT);
+        infoVbox.getChildren().add(istqbDetailText);
+        infoVbox.setBackground(new Background(new BackgroundFill(Paint.valueOf("#CACACA"), CornerRadii.EMPTY, Insets.EMPTY)));
+        VBox.setMargin(istqbDetailText,new Insets(5,0,0,5));
+
+        istqbInformationHBox.getChildren().add(infoVbox);
+        //End information pane
+
         selectTestingTypeComboBox = new ComboBox();
         questionHandler.getListOfISTQBTypeReadFromData().stream()
                 .map(e -> selectTestingTypeComboBox.getItems().add(e)).collect(Collectors.toList());
         selectTestingTypeComboBox.setStyle("-fx-font-size: 16");
-        selectTestingTypeComboBox.setOnAction(event -> questionHandler.questionGroupName = (String) selectTestingTypeComboBox.getValue());
+        selectTestingTypeComboBox.setOnAction(event -> {
+            questionHandler.questionGroupName = (String) selectTestingTypeComboBox.getValue();
+            istqbDetailText.setText(selectTestingTypeComboBox.getValue().toString()+"\nNumber of Question: 40\nPassing Score (at least 65%): 26\nTesting Time: 60 minutes\n" +
+                    "Note that the score calculate based on number of correct questions!");
+        });
         selectTestingTypeHBox.setAlignment(Pos.CENTER);
         selectTestingTypeHBox.getChildren().add(selectYourTestingTypeLabel);
         selectTestingTypeHBox.getChildren().add(selectTestingTypeComboBox);
         HBox.setMargin(selectYourTestingTypeLabel, new Insets(10, 10, 10, 10));
         HBox.setMargin(selectTestingTypeComboBox, new Insets(10, 10, 10, 10));
 
+
         //set up command button
         btn_StartTest = new Button("Start Test");
         btn_StartTest.setFont(toolFont);
         btn_StartTest.setOnAction(event -> {
             if (selectTestingTypeComboBox.getValue() != null) {
-                ((Stage) (btn_StartTest.getScene().getWindow())).close();
-                Stage examinationStage = new Stage();
                 questionHandler.isFirstLoad = true;
                 try {
-                    changeStageAndScene(examinationStage, setupLayoutPageExam(toolFont), "Examination Page of: " + selectTestingTypeComboBox.getValue());
+                    changeStageAndScene(event, setupLayoutPageExam(toolFont), "Examination Page of: " + selectTestingTypeComboBox.getValue());
                 } catch (IOException | net.lingala.zip4j.exception.ZipException zipException) {
                     throw new RuntimeException(zipException);
                 }
@@ -186,6 +237,7 @@ public class ISTQBTT_Page_Controller implements Initializable {
         resultVBox.getChildren().add(creatorTitle);
         resultVBox.getChildren().add(selectTestingTypeHBox);
         resultVBox.getChildren().add(commandContainer);
+        resultVBox.getChildren().add(istqbInformationHBox);
         resultVBox.getChildren().add(blankPaneFooter);
 
         return resultVBox;
@@ -266,23 +318,19 @@ public class ISTQBTT_Page_Controller implements Initializable {
         Button returnToHomeButton = new Button("Return Home");
         returnToHomeButton.setFont(toolFont);
         returnToHomeButton.setOnAction(event -> {
-            ((Stage) (returnToHomeButton.getScene().getWindow())).close();
-            Stage homeStage = new Stage();
             selectedAnswer = new int[40][10];
             questionHandler.isFirstLoad = true;
             try {
-                changeStageAndScene(homeStage, setupHomePage(toolFont), "Home Page");
+                changeStageAndScene(event, setupHomePage(toolFont), "Home Page");
             } catch (IOException | net.lingala.zip4j.exception.ZipException e) {
                 throw new RuntimeException(e);
             }
         });
         Button startNewTestButton = new Button("Start New Test");
         startNewTestButton.setOnAction(event -> {
-            ((Stage) (startNewTestButton.getScene().getWindow())).close();
-            Stage examinationStage = new Stage();
             try {
                 selectedAnswer = new int[40][10];
-                changeStageAndScene(examinationStage, setupLayoutPageExam(toolFont), "Examination Page of: " + selectTestingTypeComboBox.getValue());
+                changeStageAndScene(event, setupLayoutPageExam(toolFont), "Examination Page of: " + selectTestingTypeComboBox.getValue());
             } catch (IOException | net.lingala.zip4j.exception.ZipException e) {
                 throw new RuntimeException(e);
             }
@@ -420,9 +468,7 @@ public class ISTQBTT_Page_Controller implements Initializable {
         nextPageButton.setOnAction(event -> pagination.setCurrentPageIndex(pageIndex + 1));
         previousPageButton.setOnAction(event -> pagination.setCurrentPageIndex(pageIndex - 1));
         endTestButton.setOnAction(event -> {
-            ((Stage) (endTestButton.getScene().getWindow())).close();
-            Stage summaryStage = new Stage();
-            changeStageAndScene(summaryStage, setupSummaryPage(toolFont), "Summary Page");
+            changeStageAndScene(event, setupSummaryPage(toolFont), "Summary Page");
         });
         questionContainer.getChildren().add(navigationContainer);
     }

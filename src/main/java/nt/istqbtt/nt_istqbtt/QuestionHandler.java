@@ -202,83 +202,83 @@ public class QuestionHandler {
                 questionDataModel.setMultipleChoice(convertDataToBoolean(columnData));
                 break;
             }
-            case 12 : {
+            case 13 : {
                 questionDataModel.setQuestionAnswer1(columnData);
                 break;
             }
-            case 13 : {
+            case 12 : {
                 questionDataModel.setQuestionAnswer1Correct(convertDataToBoolean(columnData));
                 break;
             }
-            case 14 : {
+            case 15 : {
                 questionDataModel.setQuestionAnswer2(columnData);
                 break;
             }
-            case 15 : {
+            case 14 : {
                 questionDataModel.setQuestionAnswer2Correct(convertDataToBoolean(columnData));
                 break;
             }
-            case 16 : {
+            case 17 : {
                 questionDataModel.setQuestionAnswer3(columnData);
                 break;
             }
-            case 17 : {
+            case 16 : {
                 questionDataModel.setQuestionAnswer3Correct(convertDataToBoolean(columnData));
                 break;
             }
-            case 18 : {
+            case 19 : {
                 questionDataModel.setQuestionAnswer4(columnData);
                 break;
             }
-            case 19 : {
+            case 18 : {
                 questionDataModel.setQuestionAnswer4Correct(convertDataToBoolean(columnData));
                 break;
             }
-            case 20 : {
+            case 21 : {
                 questionDataModel.setQuestionAnswer5(columnData);
                 break;
             }
-            case 21 : {
+            case 20 : {
                 questionDataModel.setQuestionAnswer5Correct(convertDataToBoolean(columnData));
                 break;
             }
-            case 22 : {
+            case 23 : {
                 questionDataModel.setQuestionAnswer6(columnData);
                 break;
             }
-            case 23 : {
+            case 22 : {
                 questionDataModel.setQuestionAnswer6Correct(convertDataToBoolean(columnData));
                 break;
             }
-            case 24 : {
+            case 25 : {
                 questionDataModel.setQuestionAnswer7(columnData);
                 break;
             }
-            case 25 : {
+            case 24 : {
                 questionDataModel.setQuestionAnswer7Correct(convertDataToBoolean(columnData));
                 break;
             }
-            case 26 : {
+            case 27 : {
                 questionDataModel.setQuestionAnswer8(columnData);
                 break;
             }
-            case 27 : {
+            case 26 : {
                 questionDataModel.setQuestionAnswer8Correct(convertDataToBoolean(columnData));
                 break;
             }
-            case 28 : {
+            case 29 : {
                 questionDataModel.setQuestionAnswer9(columnData);
                 break;
             }
-            case 29 : {
+            case 28 : {
                 questionDataModel.setQuestionAnswer9Correct(convertDataToBoolean(columnData));
                 break;
             }
-            case 30 : {
+            case 31 : {
                 questionDataModel.setQuestionAnswer10(columnData);
                 break;
             }
-            case 31 : {
+            case 30 : {
                 questionDataModel.setQuestionAnswer10Correct(convertDataToBoolean(columnData));
                 break;
             }
