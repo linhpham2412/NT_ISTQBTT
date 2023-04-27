@@ -62,7 +62,7 @@ public class ISTQBTT_Page_Controller implements Initializable {
     Timeline timerTimeLine;
 
     //set up component size
-    double labelWidthInScrollPane = screenWidth * 0.54;
+    double objectWidthInScrollPane = screenWidth * 0.54;
     double checkBoxWidthInScrollPane = screenWidth * 0.25;
 
     //Question data item
@@ -120,7 +120,7 @@ public class ISTQBTT_Page_Controller implements Initializable {
         newStage.show();
     }
 
-    private VBox setupHomePage(Font toolFont) throws IOException, net.lingala.zip4j.exception.ZipException {
+    public VBox setupHomePage(Font toolFont) throws IOException, net.lingala.zip4j.exception.ZipException {
         //Read zip data file
         questionHandler.readQuestionZipFile(questionFileName, zipFilePassword);
         questionHandler.readAndSaveAllISTQBTypeInData(zipFilePassword);
@@ -603,7 +603,9 @@ public class ISTQBTT_Page_Controller implements Initializable {
         ScrollPane scrollPaneQuestion = new ScrollPane();
         scrollPaneQuestion.setFitToWidth(true);
         scrollPaneQuestion.setPrefViewportHeight(3000);
-        scrollPaneQuestion.setPrefHeight(420);
+        scrollPaneQuestion.setPrefViewportWidth(3000);
+        scrollPaneQuestion.setPrefHeight(screenHeight/2);
+        scrollPaneQuestion.setPrefWidth(objectWidthInScrollPane);
         scrollPaneQuestion.setContent(anchorPaneQuestion);
         return scrollPaneQuestion;
     }
@@ -682,6 +684,7 @@ public class ISTQBTT_Page_Controller implements Initializable {
                         .replace("Images\\", "file:///" + questionHandler.imageFolderAbsolutePath);
                 questionImage[i] = new ImageView();
                 questionImage[i].setImage(new Image(questionStringTitle[i]));
+                checkImageSizeAndResizeIfLongerThanScreenSize(objectWidthInScrollPane,screenHeight/2,questionImage[i]);
                 questionObjects[i] = questionImage[i];
             } else if (questionStringTitle[i].contains("[TableHeader]")) {
                 String[] tableRowData = questionStringTitle[i].split("(\\[TableRow\\])");
@@ -691,10 +694,24 @@ public class ISTQBTT_Page_Controller implements Initializable {
                 questionObjects[i] = questionGridTable[i];
             } else {
                 questionTitle[i] = new Label(questionStringTitle[i]);
-                questionTitle[i].setPrefWidth(labelWidthInScrollPane);
+                questionTitle[i].setPrefWidth(objectWidthInScrollPane);
                 questionTitle[i].setWrapText(true);
                 questionObjects[i] = questionTitle[i];
             }
+        }
+    }
+
+    private void checkImageSizeAndResizeIfLongerThanScreenSize(Double maxWidth, Double maxHeight, ImageView imageToCheck) {
+        double imageWidth = imageToCheck.getImage().getWidth();
+        double imageHeight = imageToCheck.getImage().getHeight();
+        if (imageWidth > maxWidth) {
+            double imageHeightShouldReduce = ((imageWidth - maxWidth) / imageWidth) * imageHeight;
+            imageToCheck.setFitWidth(maxWidth);
+            imageToCheck.setFitHeight(imageHeight - imageHeightShouldReduce);
+        } else if (imageHeight > maxHeight) {
+            double imageWidthShouldReduce = ((imageHeight - maxHeight) / imageHeight) * imageWidth;
+            imageToCheck.setFitHeight(maxHeight);
+            imageToCheck.setFitWidth(imageWidth-imageWidthShouldReduce);
         }
     }
 
@@ -781,7 +798,7 @@ public class ISTQBTT_Page_Controller implements Initializable {
             });
         }
         container.getChildren().add(answerCheckBoxes[elementIndex]);
-        HBox.setMargin(answerCheckBoxes[elementIndex], new Insets(10, 10, 10, 0));
+        HBox.setMargin(answerCheckBoxes[elementIndex], new Insets(10, 10, 10, 10));
         return container;
     }
 
@@ -805,7 +822,7 @@ public class ISTQBTT_Page_Controller implements Initializable {
             });
         }
         container.getChildren().add(answerRadioButtons[elementIndex]);
-        HBox.setMargin(answerRadioButtons[elementIndex], new Insets(10, 10, 10, 0));
+        HBox.setMargin(answerRadioButtons[elementIndex], new Insets(10, 10, 10, 10));
         return container;
     }
 
@@ -814,6 +831,8 @@ public class ISTQBTT_Page_Controller implements Initializable {
             if (answerHBoxContainers[i] == null) {
                 break;
             } else {
+                answerHBoxContainers[i].setMaxWidth(objectWidthInScrollPane);
+                answerHBoxContainers[i].setPrefWidth(objectWidthInScrollPane);
                 questionContainer.getChildren().add(answerHBoxContainers[i]);
             }
         }
