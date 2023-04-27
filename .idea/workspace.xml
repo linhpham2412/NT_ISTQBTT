@@ -10,21 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d0c8f9d-1842-4fa7-bc85-e1304a67af1b" name="Changes" comment="fix_save_question_index_update_home_page">
-      <change afterPath="$PROJECT_DIR$/libs/barbecue-1.5-beta1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/ConvertImageToText.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/EncryptDecryptBased64.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/ISTQBTT_ManagePage_Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/NT_ISTQBTT_Manage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/nt/istqbtt/nt_istqbtt/istqbtt_managepage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/ISTQBTT_QuestionChecker_Page_Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/NT_ISTQBTT_QuestionChecker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/nt/istqbtt/nt_istqbtt/istqbtt_QuestionCheckerpage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/NT_ISTQBTT_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/NT_ISTQBTT_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/certificate_page.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/certificate_page.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/NT_ISTQBTT_jar.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/NT_ISTQBTT_jar/NT_ISTQBTT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/NT_ISTQBTT_jar/NT_ISTQBTT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/ISTQBTT_Page_Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/ISTQBTT_Page_Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/NT_ISTQBTT_Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/NT_ISTQBTT_Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/NT_ISTQB_Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/NT_ISTQB_Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +35,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="certificate_page" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -85,7 +79,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/linhpham/IdeaProjects/NT_ISTQBTT",
+    "last_opened_file_path": "C:/Users/linhpham/IdeaProjects/NT_ISTQBTT/src/main/resources/nt/istqbtt/nt_istqbtt",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.43218392",
@@ -97,9 +91,9 @@
       <recent name="nt.istqbtt.nt_istqbtt.datamodel" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\linhpham\IdeaProjects\NT_ISTQBTT\src\main\resources\nt\istqbtt\nt_istqbtt" />
       <recent name="C:\Users\linhpham\IdeaProjects\NT_ISTQBTT\src\main\java\nt\istqbtt\nt_istqbtt" />
       <recent name="C:\Users\linhpham\IdeaProjects\NT_ISTQBTT\dependency-jars" />
-      <recent name="C:\Users\linhpham\IdeaProjects\NT_ISTQBTT\src\main\resources\nt\istqbtt\nt_istqbtt" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\linhpham\IdeaProjects\NT_ISTQBTT" />
@@ -188,22 +182,6 @@
     <MESSAGE value="fix_save_question_index_update_home_page" />
     <MESSAGE value="certificate page" />
     <option name="LAST_COMMIT_MESSAGE" value="certificate page" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/ISTQBTT_ManagePage_Controller.java</url>
-          <line>148</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/nt/istqbtt/nt_istqbtt/EncryptDecryptBased64.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
