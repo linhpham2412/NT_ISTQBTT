@@ -1,0 +1,9 @@
+<changelist name="certificate_page" date="1682396009802" recycled="false">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/certificate_page/shelved.patch" />
+  <option name="DESCRIPTION" value="certificate page" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/artifacts/NT_ISTQBTT_jar/NT_ISTQBTT.jar" />
+    <option name="AFTER_PATH" value="out/artifacts/NT_ISTQBTT_jar/NT_ISTQBTT.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/certificate_page/NT_ISTQBTT.jar" />
+  </binary>
+</changelist>

@@ -15,6 +15,14 @@
         <jdk.version>1.8</jdk.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>AsposeJavaAPI</id>
+            <name>Aspose Java API</name>
+            <url>https://repository.aspose.com/repo/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -48,24 +56,73 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-      <!-- https://mvnrepository.com/artifact/net.lingala.zip4j/zip4j -->
-      <dependency>
-        <groupId>net.lingala.zip4j</groupId>
-        <artifactId>zip4j</artifactId>
-        <version>1.2.3</version>
-      </dependency>
-      <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>1.18.20</version>
-      </dependency>
-      <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-      <dependency>
-        <groupId>commons-io</groupId>
-        <artifactId>commons-io</artifactId>
-        <version>2.11.0</version>
-      </dependency>
+        <!-- https://mvnrepository.com/artifact/net.lingala.zip4j/zip4j -->
+        <dependency>
+            <groupId>net.lingala.zip4j</groupId>
+            <artifactId>zip4j</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aspose</groupId>
+            <artifactId>aspose-barcode</artifactId>
+            <version>20.3</version>
+            <classifier>jdk17</classifier>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.nayuki/qrcodegen -->
+        <dependency>
+            <groupId>io.nayuki</groupId>
+            <artifactId>qrcodegen</artifactId>
+            <version>1.8.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jasypt</groupId>
+            <artifactId>jasypt</artifactId>
+            <version>1.9.3</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-crypto -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-crypto</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.tess4j</groupId>
+            <artifactId>tess4j</artifactId>
+            <version>4.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.5.1</version>
+        </dependency>
+        <!--        <dependency>-->
+<!--            <groupId>net.sourceforge.barbecue</groupId>-->
+<!--            <artifactId>barbecue</artifactId>-->
+<!--            <version>1.5-beta1</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
