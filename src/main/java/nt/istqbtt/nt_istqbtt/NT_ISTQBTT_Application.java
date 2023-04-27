@@ -13,6 +13,7 @@ public class NT_ISTQBTT_Application extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(NT_ISTQBTT_Application.class.getResource("istqbtt_page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1500, 850);
         stage.setTitle("Home Page");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
